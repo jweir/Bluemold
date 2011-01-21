@@ -2,11 +2,6 @@ var parser   = require(__dirname+"/../lib/parser.js").parser;
 var compiler = require(__dirname+"/../lib/compiler.js").compiler;
 var _        = require(__dirname+"/../lib/vendor/underscore");
 
-function c(input){
-   var compiled = compiler(input);
-   return (new Function(compiled))();
-}
-
 describe('text', function(){
   it("should return the quoted text", function(){
     expect(compiler([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
@@ -47,4 +42,10 @@ describe('each', function(){
   it("allows defining the $value and $index variable names", function(){
     // expect().toEqual(true);
   });
+});
+
+describe("context", function(){
+  it("finds the first available property", function(){
+
+  })
 });
