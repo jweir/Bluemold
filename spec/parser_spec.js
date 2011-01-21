@@ -12,17 +12,18 @@ String.prototype.$ = function(e){ shouldParse(this, e); }
 describe('simple', function(){
 
   it('should handle simple templates', function(){
-    "just text"           .$ ([T('just text')]);
-    "just text"           .$ ([T('just text')]);
+    "just text"             .$ ([T('just text')]);
+    "just text"             .$ ([T('just text')]);
     "text {{! [foo]}} text" .$ ([T('text '), C("comment", '[foo]'), T(' text')]);
   });
 
   it('should handle commands with objects', function(){
-    "{{= {object:1}}}"     .$ ([C("=","{object:1}")]);
-    "{{= {object:{}}}}"    .$ ([C("=","{object:{}}")]);
-    "{{= {object:{ }}}}"   .$ ([C("=","{object:{ }}")]);
-    "{{= {object:{a:2}}}}" .$ ([C("=","{object:{a:2}}")]);
-    "{{html {object:{{}}}}}"  .$ ([C("html","{object:{{}}}")]);
+    "{{= {object:1}}}"       .$ ([C("=","{object:1}")]);
+    "{{= {object:{}}}}"      .$ ([C("=","{object:{}}")]);
+    "{{= {object:{ }}}}"     .$ ([C("=","{object:{ }}")]);
+    "{{= {object:{a:2}}}}"   .$ ([C("=","{object:{a:2}}")]);
+    "{{html {object:{{}}}}}" .$ ([C("html","{object:{{}}}")]);
+    "{{html}}" .$ ([C("html","")]);
   });
 });
 
@@ -34,11 +35,27 @@ describe("value", function(){
 
 describe("if/else", function(){
   it("should capture if and the else blocks", function(){
-    // "{{if 1}}a{{else}}b{{/if}}" .$ ([["if","1"],[["text","a"]],[["text","b"]]]);
+    "{{if 1}}a{{else}}b{{/if}}".$(
+    [["if","1",
+        [["text","a"]],
+     [["else","true",
+        [["text","b"]]]]]
+    ]);
   });
 
   it("captures many else blocks with parameters", function(){
-    // "{{if 1}}a{{else 2}}b{{else}}c{{/if}}" .$ ([["if","1"],[["text","a"]],[["text","b"]]]);
+    "{{if 1}}a{{else 2}}b{{else}}c{{/if}}".$(
+    [["if","1",
+        [["text","a"]],
+     [["else","2",
+        [["text","b"]]],
+     ["else","true",
+        [["text","c"]]]]]
+    ]);
+  });
+
+  it("should require a closing /if tag", function(){
+    expect(function(){parse("{{if 1}}a{{else}}what");}).toThrow();
   });
 });
 
