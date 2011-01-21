@@ -2,6 +2,10 @@ var parser   = require(__dirname+"/../lib/parser.js").parser;
 var compiler = require(__dirname+"/../lib/compiler.js").compiler;
 var _        = require(__dirname+"/../lib/vendor/underscore");
 
+function c(template,data){
+  return compiler(parser.parse(template, data));
+}
+
 describe('text', function(){
   it("should return the quoted text", function(){
     expect(compiler([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
@@ -12,7 +16,21 @@ describe('value', function(){
   it("should return the value", function(){
     expect(compiler([["value","a"]], {a:"foo"})).toEqual("foo");
   });
+
+  it("returns strings", function(){
+    expect(c('${"hello"}')).toEqual("hello");
+    expect(c("${'hello'}")).toEqual("hello");
+  });
+
+  it("returns single and double quoted strings", function(){
+    expect(c('${"\'hello\' world"}')).toEqual("'hello' world");
+    expect(c("${'\"hello\" world'}")).toEqual('"hello" world');
+  });
 });
+
+describe('comments', function(){});
+describe('html', function(){});
+describe('tmpl', function(){});
 
 describe('if & else', function(){
   it("return if true", function(){
@@ -35,7 +53,6 @@ describe('if & else', function(){
     var code = parser.parse("{{if 1 > 2}}a{{else 2 > 3}}b{{else 3 < 5}}"+each+"{{else}}d{{/if}}");
     expect(compiler(code)).toEqual("xxx");
   });
-
 });
 
 describe('each', function(){
@@ -57,10 +74,4 @@ describe('each', function(){
   it("allows defining the $value and $index variable names", function(){
     // expect().toEqual(true);
   });
-});
-
-describe("context", function(){
-  it("finds the first available property", function(){
-
-  })
 });
