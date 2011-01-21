@@ -1,4 +1,4 @@
-var parser = require("../lib/sample.js").parser;
+var parser = require(__dirname+"/../lib/bluemold.js").parser;
 
 function parse(s){ return parser.parse(s); }
 function shouldParse(s, e){ expect(parse(s)).toEqual(e); }
@@ -14,7 +14,7 @@ describe('simple', function(){
   it('should handle simple templates', function(){
     "just text"           .$ ([T('just text')]);
     "just text"           .$ ([T('just text')]);
-    "text {{! [foo]}} text" .$ ([T('text '), C("!", '[foo]'), T(' text')]);
+    "text {{! [foo]}} text" .$ ([T('text '), C("comment", '[foo]'), T(' text')]);
   });
 
   it('should handle commands with objects', function(){
@@ -26,15 +26,30 @@ describe('simple', function(){
   });
 });
 
+describe("value", function(){
+  it("should capture ${}", function(){
+    "hello ${foo}" .$ ([T("hello "), C("value", "foo")]);
+  });
+})
+
 describe("blocks", function(){
   it("should require a closing tag", function(){
     expect(function(){parse("{{each [1,2,3]}}");}).toThrow();
-    expect(parse("{{each [1,2,3]}}{{/if}}")).toEqual(["error"]);
-    "{{each [1,2,3]}}{{/each}}" .$([E("[1,2,3]")]);
+  });
+
+  it("should error if the closing tag does not match", function(){
+    expect(function(){parse("{{each}}{{/if}}");}).toThrow();
   });
 
   it("should have inner text or block", function(){
     "{{each foo}}hello{{/each}}" .$([["each", "foo", [["text","hello"]]]]);
-    "{{each foo}}hello{{each bar}}1+1{{/each}}ok{{/each}}" .$([["each", "foo", [["text","hello"],["each","bar", [['text',"1+1"]]],["text","ok"]]]]);
+    "{{each foo}}hello{{each bar}}1+1{{/each}}ok{{/each}}"
+    .$([
+        ["each", "foo", [
+          ["text","hello"],
+          ["each","bar", [
+            ['text',"1+1"]
+          ]],
+          ["text","ok"]]]]);
   });
 })

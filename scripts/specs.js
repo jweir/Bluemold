@@ -1,4 +1,4 @@
-require.paths.push("./jasmine-node/lib");
+require.paths.push(__dirname+"/../vendor/jasmine-node/lib");
 var jasmine = require('jasmine');
 var sys = require('sys');
 
@@ -17,6 +17,6 @@ process.argv.forEach(function(arg){
 });
 
 
-jasmine.executeSpecsInFolder(__dirname + '/spec', function(runner, log){
+jasmine.executeSpecsInFolder(__dirname + '/../spec', function(runner, log){
   process.exit(runner.results().failedCount);
 }, isVerbose, showColors);
