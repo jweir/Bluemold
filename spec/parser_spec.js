@@ -32,6 +32,16 @@ describe("value", function(){
   });
 })
 
+describe("if/else", function(){
+  it("should capture if and the else blocks", function(){
+    // "{{if 1}}a{{else}}b{{/if}}" .$ ([["if","1"],[["text","a"]],[["text","b"]]]);
+  });
+
+  it("captures many else blocks with parameters", function(){
+    // "{{if 1}}a{{else 2}}b{{else}}c{{/if}}" .$ ([["if","1"],[["text","a"]],[["text","b"]]]);
+  });
+});
+
 describe("blocks", function(){
   it("should require a closing tag", function(){
     expect(function(){parse("{{each [1,2,3]}}");}).toThrow();

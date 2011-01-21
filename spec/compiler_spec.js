@@ -20,14 +20,31 @@ describe('value', function(){
 });
 
 describe('if', function(){
-  it("should return if true", function(){
-    expect(compiler([["if","1 > 2", ["text", "true"]]])).toEqual("");
-    expect(compiler([["if","3 > 2", ["text", "true"]]])).toEqual("true");
+  it("return if true", function(){
+    expect(compiler([["if","1 > 2", [["text", "true"]]]])).toEqual("");
+    expect(compiler([["if","3 > 2", [["text", "true"]]]])).toEqual("true");
+  });
+
+  it("can have have an else block", function(){
+    // expect(compiler([["if","1 > 2", [["text", "true"]],[["text","false"]]]])).toEqual("false");
+    // expect(compiler([["if","3 > 2", [["text", "true"]],[["text","false"]]]])).toEqual("true");
   });
 });
 
 describe('each', function(){
-  it("should repeat the block for each item", function(){
-    expect(compiler([["each","[1,2,3]", ["text", "x "]]])).toEqual("x x x ");
+  it("repeats the block for each item", function(){
+    expect(compiler([["each","[1,2,3]", [["text", "x "]]]])).toEqual("x x x ");
+  });
+
+  it("sets the $value in the block", function(){
+    expect(compiler([["each","[1,2,3]", [["value", "$value"]]]])).toEqual("123");
+  });
+
+  it("sets the $index in the block", function(){
+    expect(compiler([["each","['a','b','c']", [["value", "$value"],["value","$index"]]]])).toEqual("a0b1c2");
+  });
+
+  it("allows defining the $value and $index variable names", function(){
+    // expect().toEqual(true);
   });
 });
