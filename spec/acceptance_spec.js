@@ -1,5 +1,5 @@
 // https://github.com/jquery/jquery-tmpl/blob/master/tests/core.js
-var Bluemold = require(__dirname+"/../lib/bluemold").Bluemold;
+var Bluemold = require(__dirname+"/../lib").Bluemold;
 
 describe('a simple template', function(){
   it("should render", function(){
@@ -32,3 +32,4 @@ describe("context and data", function(){
     );
   });
 });
+

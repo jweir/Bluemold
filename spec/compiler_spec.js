@@ -75,3 +75,12 @@ describe('each', function(){
     // expect().toEqual(true);
   });
 });
+
+describe("multiline templates", function(){
+  it("will render them", function(){
+    var parsed = [["text","hello\nworld"]];
+    expect(
+      compiler(parsed)).toEqual(
+    "hello\nworld")
+  });
+});
