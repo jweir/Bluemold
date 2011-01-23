@@ -34,12 +34,12 @@ See the [jQuery Template page](http://api.jquery.com/category/plugins/templates/
 
 The supported tags are
 
-> {{each}}
-> {{if}}
-> {{else}}
-> {{html}}
-> ${} & {{=}}
-> {{tmpl}}
+* {{each}}
+* {{if}}
+* {{else}}
+* {{html}}
+* ${} & {{=}}
+* {{tmpl}}
 
 {{wrap}} is not supported.
 
