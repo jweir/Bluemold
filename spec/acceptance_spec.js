@@ -1,5 +1,6 @@
 // https://github.com/jquery/jquery-tmpl/blob/master/tests/core.js
 var Bluemold = require(__dirname+"/../lib").Bluemold;
+var fs = require('fs');
 
 describe('a simple template', function(){
   it("should render", function(){
@@ -33,3 +34,20 @@ describe("context and data", function(){
   });
 });
 
+describe("a complex template", function(){
+  var file = fs.readFileSync(__dirname+"/test.tmpl", "utf8");
+  var data = {
+    animals  : ["dog", "cat", "goat"],
+    partials : {
+      animals : "{{each animals}} ${$value}{{/each}}"
+    }
+  }
+  var result = Bluemold(file, data);
+  console.log(result);
+
+  it("should be properly rendered", function(){
+    expect(result).toMatch(/Hello World/);
+    expect(result).toMatch(/Count\s/);
+    expect(result).toMatch(/dog cat goat/);
+  });
+})
