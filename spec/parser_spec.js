@@ -14,7 +14,6 @@ describe('simple', function(){
   it('should handle simple templates', function(){
     "just text"             .$ ([T('just text')]);
     "just text"             .$ ([T('just text')]);
-    "text {{! [foo]}} text" .$ ([T('text '), C("comment", '[foo]'), T(' text')]);
   });
 
   it('should handle commands with objects', function(){

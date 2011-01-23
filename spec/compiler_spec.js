@@ -3,7 +3,7 @@ var compiler = require(__dirname+"/../lib/compiler.js").compiler;
 var _        = require(__dirname+"/../lib/vendor/underscore");
 
 function c(template,data){
-  return compiler(parser.parse(template, data));
+  return compiler(parser.parse(template),data);
 }
 
 describe('text', function(){
@@ -26,11 +26,40 @@ describe('value', function(){
     expect(c('${"\'hello\' world"}')).toEqual("'hello' world");
     expect(c("${'\"hello\" world'}")).toEqual('"hello" world');
   });
+
+  it("escapes HTML to be compliant with jQuery templates", function(){
+    expect(c('${"<b>&"}')).toEqual("&lt;b&gt;&amp;")
+  });
+
+  it("can also be written as {{= ... }}", function(){
+    expect(c('{{= "hello"}}')).toEqual("hello");
+  })
 });
 
-describe('comments', function(){});
-describe('html', function(){});
-describe('tmpl', function(){});
+describe('html', function(){
+  it("returns an unescaped HTML value", function(){
+    expect(c('{{html "<b>&"}}')).toEqual("<b>&")
+  });
+});
+
+describe('tmpl', function(){
+  it("renders a string sub template", function(){
+    expect(c('{{tmpl "{{each [\'a\',\'b\',\'c\']}}${$value}{{/each}}"}}')).toEqual("abc");
+  });
+
+  it("renders a subtemplate in the global object", function(){
+    expect(c('{{tmpl partial}}', {partial : "${v}", v: "hello"})).toEqual("hello");
+  });
+
+  it("renders sub,sub,... templates", function(){
+    var d = {
+      ta : "{{tmpl tb}}",
+      tb : "{{tmpl tc}}",
+      tc : "fini" };
+
+    expect(c('{{tmpl ta}}', d)).toEqual("fini");
+  });
+});
 
 describe('if & else', function(){
   it("return if true", function(){
