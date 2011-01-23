@@ -6,7 +6,11 @@ It is designed to run serverside (Node.js) and output HTML or any text based for
 
 ## Usage
 
-`Bluemold(template, {})`
+    Bluemold(template, data)
+    // template is a string object.
+    // data is an object contain all the data to use for your template.
+    // This data can be any javascript: functions, arrays, etc.
+
 
 ## A really simple example
 
@@ -18,13 +22,24 @@ It is designed to run serverside (Node.js) and output HTML or any text based for
     "I love myself a dog.
     I love myself a cat."
 
+## Documentation
+
+See the [jQuery Template page](http://api.jquery.com/category/plugins/templates/)
+
+The supported tags are
+
+> {{each}}
+> {{if}}
+> {{else}}
+> {{html}}
+> ${} & {{=}}
+> {{tmpl}}
+
+{{wrap}} is not supported.
+
 ## Current State
 
-Newborn.  Brand spanking new. Untested. Not used in production... yet.
-
-No support for the {{tmpl}} command... yet.
-No proper error messages... yet.
-No support for the `wrap` function... and may never.
+**Newborn.** It is not used in production yet. Once it is I will update this section.
 
 ## Requirements
 
