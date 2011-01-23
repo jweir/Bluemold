@@ -35,7 +35,7 @@ describe("context and data", function(){
 });
 
 describe("a complex template", function(){
-  var file = fs.readFileSync(__dirname+"/test.tmpl", "utf8");
+  var file = fs.readFileSync(__dirname+"/samples/test.tmpl", "utf8");
   var data = {
     animals  : ["dog", "cat", "goat"],
     partials : {
@@ -43,7 +43,6 @@ describe("a complex template", function(){
     }
   }
   var result = Bluemold(file, data);
-  console.log(result);
 
   it("should be properly rendered", function(){
     expect(result).toMatch(/Hello World/);
@@ -51,3 +50,10 @@ describe("a complex template", function(){
     expect(result).toMatch(/dog cat goat/);
   });
 })
+
+describe("a tmpl being called infinitely", function(){
+  it("should fail and raise an error", function(){
+    var data = {partial : "{{tmpl partial}}"};
+    expect(Bluemold("{{tmpl partial}}", data).name).toEqual("RangeError");
+  });
+});
