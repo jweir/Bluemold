@@ -1,8 +1,10 @@
 # Bluemold Template Engine
 
-Bluemold is a Javascript template engine. It conforms to a subset of the jQuery Template language.
+Bluemold is a Javascript template engine conforming to a subset of the jQuery Template language.
 
 It is designed to run serverside (Node.js) and output HTML or any text based format.
+
+Bluemold has not been used in production yet.
 
 ## Usage
 
@@ -11,16 +13,20 @@ It is designed to run serverside (Node.js) and output HTML or any text based for
     // data is an object contain all the data to use for your template.
     // This data can be any javascript: functions, arrays, etc.
 
-
 ## A really simple example
 
     var Bluemold = require('./lib/').Bluemold;
-    var template = '{{each [{name:"dog"},{name:"cat"}]}} I ${word} myself a ${name}.\n{{/each}}';
+        data  = {
+          animals : [{name:"dog"},{name:"cat"}],
+          word    : "love" },
+        template = '{{each animals}} I ${word} myself a ${name}.\n{{/each}}';
 
-    Bluemold(template,{word: "love"});
+    Bluemold(template,data);
 
-    "I love myself a dog.
-    I love myself a cat."
+Produces
+
+    I love myself a dog.
+    I love myself a cat.
 
 ## Documentation
 
@@ -37,9 +43,9 @@ The supported tags are
 
 {{wrap}} is not supported.
 
-## Current State
+## TODO
 
-**Newborn.** It is not used in production yet. Once it is I will update this section.
+Proper error messages with line numbers.
 
 ## Requirements
 
