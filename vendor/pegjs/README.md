@@ -17,11 +17,11 @@ Features
 Building
 --------
 
-To build PEG.js, simply run the `rake` command:
+To build PEG.js, you need to have [Node](http://nodejs.org/) installed together with the `jake` package. Then simply run the `jake` command:
 
-    $ rake
+    $ jake
 
-Of course, you need to have [Rake](http://rake.rubyforge.org/) installed. The command creates PEG.js library in `lib/peg.js` by processing files in the `src` directory.
+This command creates the PEG.js library in `lib/peg.js` by processing files in the `src` directory.
 
 Usage
 -----
@@ -46,7 +46,7 @@ The [online generator](http://pegjs.majda.cz/online) is easiest to use — you j
 
 To generate the parser from JavaScript code, include the `lib/compiler.js` file and use the `PEG.buildParser` function. This function accepts a string with a grammar and either returns the built parser object or throws an exception if the grammar is invalid.
 
-To generate the parser from a command line, you need to have Java installed (so that [Rhino](http://www.mozilla.org/rhino/) — which is included in PEG.js — can run). Use the `bin/pegjs` script on Unix or `bin/pegjs.bat` batch file on Windows:
+To generate the parser from a command line, you need to have [Node](http://nodejs.org/) installed. Then use the `bin/pegjs` script:
 
     $ bin/pegjs --export-var arithmeticsParser examples/arithmetics.pegjs
 
@@ -72,4 +72,4 @@ Both the parser generator and generated parsers should run well in the following
   * Chrome
   * Safari
   * Opera
-  * Rhino
+  * Node
