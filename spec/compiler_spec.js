@@ -1,6 +1,8 @@
 var parser   = require(__dirname+"/../lib/parser.js").parser;
 var compiler = require(__dirname+"/../lib/compiler.js").compiler;
-var c        = require(__dirname+"/../lib").Bluemold;
+var Bluemold = require(__dirname+"/../lib").Bluemold;
+var _        = require(__dirname+"/../lib/vendor/underscore");
+var c        = Bluemold;
 
 function generator(parsed, data){
   var compiled = compiler(parsed),
@@ -15,6 +17,8 @@ function generator(parsed, data){
     return e;
   }
 }
+
+
 
 describe('text', function(){
   it("should return the quoted text", function(){
