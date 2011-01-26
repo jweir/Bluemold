@@ -115,7 +115,7 @@ describe('each', function(){
   });
 
   it("allows defining the $value and $index variable names", function(){
-    // expect().toEqual(true);
+    expect(c("{{each(X,Y) ['A','B']}}${X}-${Y}{{/each}}")).toEqual("0-A1-B");
   });
 });
 

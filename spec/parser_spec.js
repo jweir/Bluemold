@@ -67,6 +67,10 @@ describe("blocks", function(){
     expect(function(){parse("{{each}}{{/if}}");}).toThrow();
   });
 
+  it("accepts args for each", function(){
+    "{{each(X,Y) hello}}{{/each}}" .$([["each", {args: "X,Y", data : "hello"}, '']]);
+  });
+
   it("should have inner text or block", function(){
     "{{each foo}}hello{{/each}}" .$([["each", "foo", [["text","hello"]]]]);
     "{{each foo}}hello{{each bar}}1+1{{/each}}ok{{/each}}"
