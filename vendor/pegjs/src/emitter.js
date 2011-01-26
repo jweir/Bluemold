@@ -135,7 +135,7 @@ PEG.compiler.emitter = function(ast) {
         "      function escape(ch) {",
         "        var charCode = ch.charCodeAt(0);",
         "        ",
-        "        if (charCode < 0xFF) {",
+        "        if (charCode <= 0xFF) {",
         "          var escapeChar = 'x';",
         "          var length = 2;",
         "        } else {",
@@ -349,7 +349,7 @@ PEG.compiler.emitter = function(ast) {
 
       return formatCode(
         "function parse_${name}() {",
-        "  var cacheKey = ${name|string} + '@' + pos;",
+        "  var cacheKey = '${name}@' + pos;",
         "  var cachedResult = cache[cacheKey];",
         "  if (cachedResult) {",
         "    pos = cachedResult.nextPos;",
