@@ -48,7 +48,7 @@ describe('value', function(){
   })
 
   it("can define a value with ${property = 'value'}", function(){
-    expect(c('hello ${function(){ return p = 12}} ${p}')).toEqual("hello 12 12");
+    expect(c('hello ${p = 12} ${p}')).toEqual("hello 12 12");
   });
 });
 
