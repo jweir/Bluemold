@@ -18,8 +18,6 @@ function generator(parsed, data){
   }
 }
 
-
-
 describe('text', function(){
   it("should return the quoted text", function(){
     expect(generator([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
@@ -48,6 +46,10 @@ describe('value', function(){
   it("can also be written as {{= ... }}", function(){
     expect(c('{{= "hello"}}')).toEqual("hello");
   })
+
+  it("can define a value with ${property = 'value'}", function(){
+    expect(c('hello ${function(){ return p = 12}} ${p}')).toEqual("hello 12 12");
+  });
 });
 
 describe('html', function(){
