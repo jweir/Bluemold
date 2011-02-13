@@ -29,6 +29,10 @@ describe('value', function(){
     expect(generator([["value","a"]], {a:"foo"})).toEqual("foo");
   });
 
+  it("should ignore null values", function(){
+    expect(generator([["value","a"]], {a:null})).toEqual("");
+  });
+
   it("returns strings", function(){
     expect(c('${"hello"}')).toEqual("hello");
     expect(c("${'hello'}")).toEqual("hello");
@@ -56,6 +60,11 @@ describe('html', function(){
   it("returns an unescaped HTML value", function(){
     expect(c('{{html "<b>&"}}')).toEqual("<b>&")
   });
+
+  it("should ignore null values", function(){
+    expect(c('hello {{html null}}')).toEqual("hello ");
+  });
+
 });
 
 describe('tmpl', function(){
