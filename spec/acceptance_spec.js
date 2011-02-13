@@ -17,7 +17,15 @@ describe('a simple template', function(){
     expect(Bluemold(
       "hello {{each [1,2,3]}}{{if $value > 2}}${$value}{{else}}no {{/if}}{{/each}}")).toEqual(
       "hello no no 3");
+  });
+
+  it("should handle properties in an if/else block",function(){
+    expect(Bluemold(
+      "hello {{if Bool}}ok{{else}}\n${title}{{/if}}",
+      {Bool:false, title:"book"})).toEqual(
+      "hello \nbook");
   })
+
 });
 
 describe("context and data", function(){
