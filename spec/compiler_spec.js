@@ -84,6 +84,10 @@ describe('tmpl', function(){
 
     expect(c('{{tmpl ta}}', d)).toEqual("fini");
   });
+
+  it("accepts additional args", function(){
+    expect(c('{{tmpl({v:"goodbye"}) partial}}', {partial : "${v}", v: "hello"})).toEqual("goodbye");
+  });
 });
 
 describe('if & else', function(){
@@ -106,6 +110,11 @@ describe('if & else', function(){
     var each = "{{each [1,2,3]}}x{{/each}}";
     var code = parser.parse("{{if 1 > 2}}a{{else 2 > 3}}b{{else 3 < 5}}"+each+"{{else}}d{{/if}}");
     expect(generator(code)).toEqual("xxx");
+  });
+
+  it("should not evaluate a block if not reached", function(){
+    var code = parser.parse("{{if false}}${a = 'invalid'}{{else}}${a}{{/if}}");
+    expect(generator(code, {a:"valid"})).toEqual("valid");
   });
 });
 

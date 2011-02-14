@@ -58,6 +58,18 @@ describe("if/else", function(){
   });
 });
 
+describe("tmpl", function(){
+  it("takes a partial name", function(){
+    expect(parse("{{tmpl template}}"))
+    .toEqual([["tmpl", {args: undefined, partial: "template"}]]);
+  });
+
+  it("accepts optional data argument", function(){
+    expect(parse("{{tmpl({a:'data'}) template}}"))
+    .toEqual([["tmpl", {args: "{a:'data'}", partial: "template"}]]);
+  });
+});
+
 describe("blocks", function(){
   it("should require a closing tag", function(){
     expect(function(){parse("{{each [1,2,3]}}");}).toThrow();
