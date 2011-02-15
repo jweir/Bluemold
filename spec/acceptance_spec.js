@@ -65,3 +65,37 @@ describe("a tmpl being called infinitely", function(){
     expect(Bluemold("{{tmpl partial}}", data).name).toEqual("RangeError");
   });
 });
+
+describe("partials", function(){
+  var ifLayout = '\
+    {{if NoPartial}}\
+        {{html body}}\
+    {{else}}\
+        {{tmpl partial}}\
+        {{html body}}\
+    {{/if}}\
+    </div>'
+
+  var eachLayout = '\
+    {{each Each}}\
+        {{tmpl partial}}${$index}\
+        {{html body}}${$value}\
+    {{/each}}\
+    </div>'
+
+  var partial = '${partialValue}';
+
+  it("should reunder in an if block", function(){
+    var result = Bluemold(ifLayout, {NoPartial: false, partialValue : "world", partial : partial, body : "ok"});
+    expect(result).toMatch(/ok/);
+    expect(result).toMatch(/world/);
+  });
+
+  it("should reunder in an each block", function(){
+    var result = Bluemold(eachLayout, {Each: ["a","b"], partialValue : "world", partial : partial, body : "ok"});
+    expect(result).toMatch(/oka/);
+    expect(result).toMatch(/okb/);
+    expect(result).toMatch(/world0/);
+    expect(result).toMatch(/world1/);
+  });
+});
