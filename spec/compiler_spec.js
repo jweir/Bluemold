@@ -68,10 +68,6 @@ describe('html', function(){
 });
 
 describe('tmpl', function(){
-  it("renders a string sub template", function(){
-    expect(c('{{tmpl "{{each [\'a\',\'b\',\'c\']}}${$value}{{/each}}"}}')).toEqual("abc");
-  });
-
   it("renders a subtemplate in the global object", function(){
     expect(c('{{tmpl partial}}', {partial : "${v}", v: "hello"})).toEqual("hello");
   });

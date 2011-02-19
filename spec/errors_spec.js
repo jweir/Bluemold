@@ -30,4 +30,13 @@ describe("a template with a javascript error", function(){
   it("should have the name of the template", function(){
     expect(result.template).toEqual("test.tmpl");
   });
-})
+});
+
+describe("a partial with a javascript error", function(){
+  var partial = fs.readFileSync(__dirname+"/samples/js_error.tmpl", "utf8");
+  var result = Bluemold("{{tmpl partialSrc}}", {partialSrc:partial}, "test.tmpl");
+
+  it("should have the name of the template", function(){
+    expect(result.template).toEqual("partialSrc");
+  });
+});
