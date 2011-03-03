@@ -81,8 +81,12 @@ describe('tmpl', function(){
     expect(c('{{tmpl ta}}', d)).toEqual("fini");
   });
 
-  it("accepts additional args", function(){
+  it("accepts an object as context", function(){
     expect(c('{{tmpl({v:"goodbye"}) partial}}', {partial : "${v}", v: "hello"})).toEqual("goodbye");
+  });
+
+  it("accepts an array as context", function(){
+    expect(c('{{tmpl([{v:"goodbye"},{v:"hello"}]) partial}}', {partial : "${v}"})).toEqual("goodbyehello");
   });
 });
 
