@@ -2,7 +2,9 @@ var Bluemold = require(__dirname+"/../lib").Bluemold;
 var jQuery = {tmpl:{tag:{}}};
 var $ = jQuery;
 
-function module(){};
+var moduleName;
+
+function module(name){ moduleName = name;};
 
 function test(d, fn){
   describe(d, fn);
@@ -13,10 +15,10 @@ function isFunction(f){
 }
 
 function test_handler(message, result, expected){
-  it(message, function(){
+  it([moduleName, message].join(": "), function(){
     var is_err = (isFunction(expected) && expected.prototype instanceof Error);
-    if ( is_err && result instanceof expected ) {
-      expect( result instanceof expected).toBeTruthy();
+    if ( is_err) {
+      expect( result.name).toEqual(expected.name);
     }
     else {
       expect(result).toEqual(expected);
@@ -25,12 +27,12 @@ function test_handler(message, result, expected){
 }
 
 var testData = {
-		one: "first",
-		two: "second",
-		v: "test",
-		arr: ["AA","BB","CC"],
+		one : "first",
+		two : "second",
+		v   : "test",
+		arr : ["AA","BB","CC"],
 		dict: {"leovinus":"this","scraliontis":"that","brobostigon":"other"},
-		fun: function () {
+		fun : function () {
 			return 'RETURNED';
 		},
 		html: '<a>'
@@ -48,20 +50,11 @@ var R = function ( tmpl, data ) {
 	}
 };
 
-function xtest_handler( test_name, res, exp ) {
-	var is_err = ($.isFunction(exp) && exp.prototype instanceof Error);
-	if ( is_err && res instanceof exp ) {
-		ok( res instanceof exp, test_name );
-	}
-	else {
-		same( res, exp, test_name );
-	}
-}
-
+// Bluemold TODO fix so these are called in the template
 // these are used throughout to test if tag blocks suppress them
-jQuery.tmpl.tag.syntax_error = { open: "throw SyntaxError('test syntax error');" };
+jQuery.tmpl.tag.syntax_error    = { open: "throw SyntaxError('test syntax error');" };
 jQuery.tmpl.tag.reference_error = { open: "throw ReferenceError('test reference error');" };
-jQuery.tmpl.tag.type_error = { open: "throw TypeError('test type error');" };
+jQuery.tmpl.tag.type_error      = { open: "throw TypeError('test type error');" };
 
 module("Basics");
 
@@ -134,7 +127,7 @@ module("Basics");
 	// these tests are a bit awkward because caching is done in $.render, not $.tmpl
 	test("Caching via $.template() and .template()", function() {
     /*
-    Bluemold Incompatible
+    FIXME Bluemold Incompatible
 		$.template('nametmpl', '<span>name: ${ v }</span>' );
 		test_handler( "using a named template", $.tmpl('nametmpl', testData).text(), 'name: test' );
 
@@ -367,7 +360,7 @@ module("Commands");
 	});
 	
 	test("{{tmpl() template}}", function() {
-    /* Bluemold Incompatible
+    /* FIXME Bluemold Incompatible
 		jQuery.template('test', '${ "test text" }');
 		test_handler( "simple include", R('{{tmpl "test"}}'), 'test text' );
 
@@ -411,6 +404,7 @@ module("Commands");
 	});
 
   /*
+  * FIXME Bluemold incompatible
 module("Script Tag Caching");
 
 	test("Template Reuse", function(){
