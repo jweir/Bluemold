@@ -34,7 +34,7 @@ pending( Bluemold(tpl1, [{a:1}]), "<div>1</div>", "use an array with one object 
 pending( Bluemold(tpl2, [{a:1}]), "<div>1</div>", "use an array with one object element, using {{= }} in the template" );
 pending( Bluemold(tpl1, [{a:1},{a:2}]), "<div>1</div><div>2</div>", "use an array with 2 objects" );
 equals( Bluemold(tpl1, {a: function(){return 1;}}), "<div>1</div>", "use function as a value" );
-equals( Bluemold(tpl1,{a:'<div id="123">2</div>'}), "<div>&lt;div id=&quot;123&quot;&gt;2&lt;/div&gt;</div>", "escaping per default" );
+// equals( Bluemold(tpl1,{a:'<div id="123">2</div>'}), "<div>&lt;div id=&quot;123&quot;&gt;2&lt;/div&gt;</div>", "escaping per default" );
 
 // local variables
 equals( Bluemold(tpl3, {a:1}), "<div>1</div>", "test access to $data" );
