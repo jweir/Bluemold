@@ -12,7 +12,6 @@ describe("a template with a sytax error", function(){
   it("should have a line number", function(){
     expect(result.lineNumber).toEqual(5);
   });
-
 })
 
 describe("a template with a javascript error", function(){

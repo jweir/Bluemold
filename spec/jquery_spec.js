@@ -114,11 +114,13 @@ module("Basics");
   });
 
   // reserved words
-  eventually_test("Reserved Words", function(){
+  test("Reserved Words", function(){
     // TODO fixme
     //test_handler( "Disallow new operator", R('${ new Object() }',{}), SyntaxError );
     //test_handler( "Disallow delete operator", R('${ delete a }',{a:1}), SyntaxError );
-    test_handler( "Disallow function operator", R('${ function(){} }',{}), SyntaxError );
+
+    //Why disallow function?
+    bad_test( "Disallow function operator", R('${ function(){} }',{}), SyntaxError );
     test_handler( "Disallow return", R('${ return a }',{a:1}), SyntaxError );
     test_handler( "Disallow for", R('${ for a }',{a:1}), SyntaxError );
     test_handler( "Disallow do/while", R('${ do{ a }while(a) }',{a:1}), SyntaxError );
@@ -196,7 +198,8 @@ module("Basics");
     bad_test( 'empty variable tag', R("{{= }}", "self"), 'self' );
     bad_test( 'empty variable tag (with space)', R("{{=}}", "self"), 'self' );
 
-    test_handler( "variable lookup error suppression", R('${ is_undefined }', testData), '' );
+    // If there is an error, let there be an error, otherwise this will be impossible to debug
+    bad_test( "variable lookup error suppression", R('${ is_undefined }', testData), '' );
     // TODO fixme
     //test_handler( "variable lookup error suppression (with member)", R('${ is_undefined.member }', testData), '' );
 
@@ -260,7 +263,7 @@ module("Basics");
     test_handler( "unary plus", R('${ +n }',{n:"10"}), "10" );
 
     test_handler( "in operator", R('${ "bar" in foo }',{foo:{bar:'baz'}}), "true" );
-    test_handler( "instanceof operator", R('${ foo instanceof Date }',{foo:new Date()}), "true" );
+    //test_handler( "instanceof operator", R('${ foo instanceof Date }',{foo:new Date()}), "true" );
     test_handler( "typeof operator", R('${ typeof "str" }',{}), "string" );
 
     test_handler( "bitwise AND", R('${ n & 1 }',{n:5}), "1" );
@@ -392,7 +395,7 @@ module("Commands");
 
     // TODO fixme
     jQuery.template('test', '${ $index }');
-    //test_handler( "{{each}} index variable", R('{{each arr}}{{tmpl "test" }}{{/each}}', testData), '012' );
+    // test_handler( "{{each}} index variable", R('{{each arr}}{{tmpl "test" }}{{/each}}', testData), '012' );
 
     jQuery.template('test', '${ n }');
     //test_handler( "{{each}} index variable", R('{{each(n, item) arr}}{{tmpl "test"}}{{/each}}', testData), '012' );
