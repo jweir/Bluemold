@@ -66,6 +66,13 @@ describe("a tmpl being called infinitely", function(){
   });
 });
 
+describe("a tmpl being called with data", function(){
+  it("should set the context to that data", function(){
+    var data = {partial : "${t}"};
+    expect(Bluemold("{{tmpl([{t:'bar'},{t:'foo'}]) partial}}", data)).toEqual("barfoo");
+  });
+});
+
 describe("partials", function(){
   var ifLayout = '\
     {{if NoPartial}}\
