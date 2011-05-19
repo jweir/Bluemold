@@ -20,10 +20,15 @@ function generator(parsed, data){
 
 describe('text', function(){
   it("should return the quoted text", function(){
-    expect(generator([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
+    expect(1).toEqual(2);
   });
 });
 
+describe('trailing semicolons', function(){
+  it("should return the quoted text", function(){
+    expect(generator([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
+  });
+});
 describe('value', function(){
   it("should return the value", function(){
     expect(generator([["value","a"]], {a:"foo"})).toEqual("foo");
@@ -136,6 +141,10 @@ describe('each', function(){
 
   it("allows defining the $value and $index variable names", function(){
     expect(c("{{each(X,Y) ['A','B']}}${X}-${Y}{{/each}}")).toEqual("0-A1-B");
+  });
+
+  it("does not error when a collection is null", function(){
+    expect(c("{{each foo}}ok{{/each}}")).toEqual("");
   });
 });
 
