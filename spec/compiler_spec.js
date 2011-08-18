@@ -18,12 +18,6 @@ function generator(parsed, data){
   }
 }
 
-describe('text', function(){
-  it("should return the quoted text", function(){
-    expect(1).toEqual(2);
-  });
-});
-
 describe('trailing semicolons', function(){
   it("should return the quoted text", function(){
     expect(generator([["text","'hello' \"world\""]])).toEqual("'hello' \"world\"");
@@ -48,8 +42,8 @@ describe('value', function(){
     expect(c("${'\"hello\" world'}")).toEqual('"hello" world');
   });
 
-  it("escapes HTML to be compliant with jQuery templates", function(){
-    expect(c('${"<b>&"}')).toEqual("&lt;b&gt;&amp;")
+  it("does not escape HTML and is not compatible with jQuery templates", function(){
+    expect(c('${"<b>&"}')).toEqual("<b>&")
   });
 
   it("can also be written as {{= ... }}", function(){
