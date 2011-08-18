@@ -6,7 +6,7 @@ It is designed to run serverside (Node.js) and output HTML or any text based for
 
 Bluemold is the template engine used for the portfolios at http://famedriver.com
 
-## Install & Usage
+## Install
     npm install bluemold
 
 ## Usage
