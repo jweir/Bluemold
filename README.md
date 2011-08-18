@@ -1,32 +1,20 @@
 # Bluemold Template Engine
 
-Bluemold is a Javascript template engine conforming to a subset of the jQuery Template language.
+Bluemold is a Javascript template engine based on jQuery Template syntax.
 
 It is designed to run serverside (Node.js) and output HTML or any text based format.
 
-Bluemold has not been used in production yet.
+Bluemold is the template engine used for the portfolios at http://famedriver.com
+
+## Install & Usage
+    npm install bluemold
 
 ## Usage
+    var Bluemold = require('bluemold').Bluemold
 
-    Bluemold(template, data)
-    // template is a string object.
-    // data is an object contain all the data to use for your template.
-    // This data can be any javascript: functions, arrays, etc.
+    Bluemold( "Hello ${world}. {{each words}}${$value} {{/each}}", {world: "Earth", words:["Where", "will", "we", "go", "?"]})
 
-## A really simple example
-
-    var Bluemold = require('./lib/').Bluemold;
-        data  = {
-          animals : [{name:"dog"},{name:"cat"}],
-          word    : "love" },
-        template = '{{each animals}} I ${word} myself a ${name}.\n{{/each}}';
-
-    Bluemold(template,data);
-
-Produces
-
-    I love myself a dog.
-    I love myself a cat.
+    // 'Hello Earth. Where will we go ? '
 
 ## Documentation
 
@@ -47,9 +35,11 @@ The supported tags are
 
 Proper error messages with line numbers.
 
-## Requirements
+## Dependencies
 
-[Underscore](http://documentcloud.github.com/underscore/) is the only requirement for rendering the templates.
+Bluemold is installed with
+
+[Underscore](http://documentcloud.github.com/underscore/)
 
 For development [PEG.JS](http://pegjs.majda.cz/) is used to create the parser. The specs are written using [Jasmine](http://pivotal.github.com/jasmine/).
 
@@ -59,10 +49,6 @@ I would love contributors, fork away! But please use 2 soft space indents and wr
 
 `scripts/build` will regenerate the parser.
 `scripts/spec` will run the tests.
-
-Install the Watchr gem and `watchr .watchr` to automatically build or spec on demand.
-
-    gem install watchr
 
 ## Bugs
 
