@@ -1,7 +1,7 @@
 var parser   = require(__dirname+"/../lib/parser.js").parser;
 var compiler = require(__dirname+"/../lib/compiler.js").compiler;
 var Bluemold = require(__dirname+"/../lib").Bluemold;
-var _        = require(__dirname+"/../lib/vendor/underscore");
+var _        = require("underscore");
 var c        = Bluemold;
 
 function generator(parsed, data){
