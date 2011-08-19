@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "jasmine-node" : ">=1.0.0",
-    "pegjs" : "0.5.0"
+    "pegjs" : ">=0.6.1"
   }
 }

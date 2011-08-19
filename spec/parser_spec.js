@@ -1,4 +1,4 @@
-var parser = require(__dirname+"/../lib/parser.js").parser;
+var parser = require(__dirname+"/../lib/parser.js");
 
 function parse(s){ return parser.parse(s); }
 function shouldParse(s, e){ expect(parse(s)).toEqual(e); }
