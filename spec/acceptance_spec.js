@@ -1,5 +1,5 @@
 // https://github.com/jquery/jquery-tmpl/blob/master/tests/core.js
-var Bluemold = require(__dirname+"/../lib").Bluemold;
+var Bluemold = require(__dirname+"/../lib");
 var fs = require('fs');
 
 describe('a simple template', function(){
