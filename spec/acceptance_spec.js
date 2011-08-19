@@ -92,7 +92,7 @@ describe("partials", function(){
 
   var partial = '${partialValue}';
 
-  it("should reunder in an if block", function(){
+  it("renders in an if block", function(){
     var result = Bluemold(ifLayout, {NoPartial: false, partialValue : "world", partial : partial, body : "ok"});
     expect(result).toMatch(/ok/);
     expect(result).toMatch(/world/);
@@ -104,5 +104,11 @@ describe("partials", function(){
     expect(result).toMatch(/okb/);
     expect(result).toMatch(/world0/);
     expect(result).toMatch(/world1/);
+  });
+});
+
+describe("require()", function(){
+  it("should raise an error", function(){
+    expect(Bluemold("${require('foo')}").name).toEqual("ReferenceError");
   });
 });
