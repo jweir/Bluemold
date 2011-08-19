@@ -1,5 +1,4 @@
-require.paths.push(__dirname+"/../vendor/jasmine-node/lib");
-var jasmine = require('jasmine');
+var jasmine = require('jasmine-node');
 var sys = require('sys');
 
 for(var key in jasmine) {
