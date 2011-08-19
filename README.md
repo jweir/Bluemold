@@ -27,19 +27,20 @@ Bluemold is the template engine used for the portfolios at http://famedriver.com
 See the [specs]("https://github.com/jweir/Bluemold/tree/master/spec") for more examples
 
 ## Documentation
-
-See the [jQuery Template page](http://api.jquery.com/category/plugins/templates/)
-
 The supported tags are
 
-* {{each}}
-* {{if}}
+* {{each}}{{/each}}
+* {{if}}{{/each}}
 * {{else}}
 * {{html}}
 * ${} & {{=}}
 * {{tmpl}}
 
 {{wrap}} is not supported.
+
+See the [jQuery Template page](http://api.jquery.com/category/plugins/templates/).
+
+Unlike jQeury templates, HTML is not escaped but default.
 
 ## TODO
 
