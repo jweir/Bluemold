@@ -38,7 +38,7 @@ See the [specs]("https://github.com/jweir/Bluemold/tree/master/spec") for more e
 The supported tags are
 
 * {{each}}{{/each}}
-* {{if}}{{/each}}
+* {{if}}{{/if}}
 * {{else}}
 * {{html}}
 * ${} & {{=}}
