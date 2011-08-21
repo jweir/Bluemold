@@ -112,3 +112,10 @@ describe("require()", function(){
     expect(Bluemold("${require('foo')}").name).toEqual("ReferenceError");
   });
 });
+
+describe("Bluemold.sandbox()", function(){
+  it("sets defaults for all sanboxes", function(){
+    Bluemold.sandbox({f:"string", w:function(){return 'func'}});
+    expect(Bluemold("${f} ${w()}")).toEqual('string func');
+  })
+})

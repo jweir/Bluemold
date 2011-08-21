@@ -24,6 +24,14 @@ Bluemold is the template engine used for the portfolios at http://famedriver.com
 
     // 'HELLO WORLD'
 
+### Global sandbox
+By default the sandbox only includes the user data and the Underscore library as \_. To include additional functions or data set them with the `sandbox` method.
+
+    Bluemold.sandbox({http: function(){return 'an http function'}})
+    Bluemold("${http()}")
+    // 'an http function'
+
+
 See the [specs]("https://github.com/jweir/Bluemold/tree/master/spec") for more examples
 
 ## Documentation
