@@ -9,13 +9,12 @@ Bluemold is the template engine used for the portfolios at http://famedriver.com
 ## Install
     npm install bluemold
 
-## Usage
-    var Bluemold = require('bluemold');
-    // Bluemold(<template>, <data>)
-
 ### Simple example
-    Bluemold( "Hello ${world}. {{each words}}${$value} {{/each}}", {world: "Earth", words:["Where", "will", "we", "go?"]})
+    var Bluemold = require('bluemold'),
+        template = "Hello ${world}. {{each words}}${$value} {{/each}}",
+        data = {world: "Earth", words:["Where", "will", "we", "go?"]};
 
+    Bluemold( template, data)
     // 'Hello Earth. Where will we go? '
 
 ### Javascript helper functions
