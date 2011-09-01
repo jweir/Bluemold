@@ -12,7 +12,7 @@ Bluemold is the template engine used for the portfolios at http://famedriver.com
 ### Simple example
     var Bluemold = require('bluemold'),
         template = "Hello ${world}. {{each words}}${$value} {{/each}}",
-        data = {world: "Earth", words:["Where", "will", "we", "go?"]};
+        data     = {world: "Earth", words:["Where", "will", "we", "go?"]};
 
     Bluemold( template, data)
     // 'Hello Earth. Where will we go? '

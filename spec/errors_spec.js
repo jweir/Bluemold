@@ -39,3 +39,16 @@ describe("a partial with a javascript error", function(){
     expect(result.template).toEqual("partialSrc");
   });
 });
+
+describe("decorateError()", function(){
+  var partial = fs.readFileSync(__dirname+"/samples/js_error.tmpl", "utf8");
+
+  it("allows customization of the message", function(){
+    Bluemold.decorateError("Error at line ${lineNumber} of ${template}");
+    var result = Bluemold("{{tmpl partialSrc}}", {partialSrc:partial}, "test.tmpl");
+    expect(result).toEqual("Error at line 3 of partialSrc");
+  })
+});
+
+describe("disabling errors", function(){
+});
