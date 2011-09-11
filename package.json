@@ -16,7 +16,7 @@
     "node": "~v0.4.9"
   },
   "dependencies": {
-    "underscore" : "1.1.4"
+    "underscore" : "1.1.7"
   },
   "devDependencies": {
     "jasmine-node" : ">=1.0.0",
