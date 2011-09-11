@@ -84,6 +84,10 @@ describe('tmpl', function(){
     expect(c('{{tmpl({v:"goodbye"}) partial}}', {partial : "${v}", v: "hello"})).toEqual("goodbye");
   });
 
+  it("defaults a new context with the global context", function(){
+    expect(c('{{tmpl({v:"goodbye"}) partial}}', {partial : "${a} ${v}", a: 'say', v: "hello"})).toEqual("say goodbye");
+  });
+
   it("accepts an array as context", function(){
     expect(c('{{tmpl([{v:"goodbye"},{v:"hello"}]) partial}}', {partial : "${v}"})).toEqual("goodbyehello");
   });
