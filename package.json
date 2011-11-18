@@ -2,7 +2,7 @@
   "author": "John Weir <john@famedriver.com> (http://famedriver.com)",
   "name": "bluemold",
   "description": "Template engine based on jQuery template syntax",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "homepage": "https://github.com/jweir/Bluemold",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "test": "script/specs"
   },
   "engines": {
-    "node": "~v0.4.9"
+    "node": ">=0.4.9"
   },
   "dependencies": {
     "underscore" : "1.1.7"
