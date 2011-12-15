@@ -19,7 +19,7 @@ describe("a template with a javascript error", function(){
   var result = Bluemold(file, {}, "test.tmpl");
 
   it("should have a linenumber", function(){
-    expect(result.lineNumber).toEqual(3);
+    expect(result.lineNumber).toEqual(5);
   });
 
   it("should have the raw source", function(){
@@ -46,7 +46,7 @@ describe("decorateError()", function(){
   it("allows customization of the message", function(){
     Bluemold.decorateError("Error at line ${lineNumber} of ${template}");
     var result = Bluemold("{{tmpl partialSrc}}", {partialSrc:partial}, "test.tmpl");
-    expect(result).toEqual("Error at line 3 of partialSrc");
+    expect(result).toEqual("Error at line 5 of partialSrc");
   })
 });
 
