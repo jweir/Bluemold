@@ -13,13 +13,13 @@
     "test": "script/specs"
   },
   "engines": {
-    "node": ">=0.4.9"
+    "node": ">=0.6.0"
   },
   "dependencies": {
-    "underscore" : "1.1.7"
+    "underscore" : ">=1.2.0"
   },
   "devDependencies": {
     "jasmine-node" : ">=1.0.0",
-    "pegjs" : ">=0.6.1"
+    "pegjs" : ">=0.6.2"
   }
 }
