@@ -59,9 +59,9 @@ describe("a complex template", function(){
   });
 })
 
-describe("a tmpl being called infinitely", function(){
+describe("a tmpl being called infinitely in a loop", function(){
   it("should fail and raise an error", function(){
-    var data = {partial : "{{tmpl partial}}"};
+    var data = {partial : "{{tmpl partial}}{{tmpl partial}}"};
     expect(Bluemold("{{tmpl partial}}", data).name).toEqual("RangeError");
   });
 });
