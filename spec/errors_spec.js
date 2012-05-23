@@ -1,4 +1,4 @@
-var Bluemold = require(__dirname+"/../lib");
+var Bluemold = require(__dirname+"/../lib/bluemold");
 var fs = require('fs');
 
 describe("a template with a sytax error", function(){

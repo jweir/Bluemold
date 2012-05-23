@@ -1,4 +1,4 @@
-var Bluemold = require(__dirname+"/../lib");
+var Bluemold = require(__dirname+"/../lib/bluemold");
 var jQuery = {tmpl:{tag:{}}};
 var $ = jQuery;
 

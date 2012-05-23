@@ -1,6 +1,6 @@
-var parser   = require(__dirname+"/../lib/parser.js");
-var compiler = require(__dirname+"/../lib/compiler.js").compiler;
-var Bluemold = require(__dirname+"/../lib");
+var parser   = require(__dirname+"/../lib/parser");
+var compiler = require(__dirname+"/../lib/compiler").compiler;
+var Bluemold = require(__dirname+"/../lib/bluemold");
 var _        = require("underscore");
 var c        = Bluemold;
 

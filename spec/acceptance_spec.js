@@ -1,5 +1,5 @@
 // https://github.com/jquery/jquery-tmpl/blob/master/tests/core.js
-var Bluemold = require(__dirname+"/../lib");
+var Bluemold = require(__dirname+"/../lib/bluemold");
 var fs = require('fs');
 
 describe('a simple template', function(){
@@ -58,13 +58,6 @@ describe("a complex template", function(){
     expect(result).toMatch(/dog cat goat/);
   });
 })
-
-describe("a tmpl being called infinitely in a loop", function(){
-  it("should fail and raise an error", function(){
-    var data = {partial : "{{tmpl partial}}{{tmpl partial}}"};
-    expect(Bluemold("{{tmpl partial}}", data).name).toEqual("RangeError");
-  });
-});
 
 describe("a tmpl being called with data", function(){
   it("should set the context to that data", function(){

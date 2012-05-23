@@ -33,6 +33,12 @@ By default the sandbox only includes the user data and the Underscore library as
 
 See the [specs]("https://github.com/jweir/Bluemold/tree/master/spec") for more examples
 
+### Running as a process
+Bluemold can be run via a child process.  This allows timeouts to be set on rendering and avoids infinite loops or other problems.
+
+    var send = require('bluemold').send;
+    send(["this data is ${data}", {data:true}, "template"], 1000 /*timeout*/, function(string){....});
+
 ## Documentation
 The supported tags are
 
