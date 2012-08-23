@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jweir/Bluemold.png)](http://travis-ci.org/jweir/Bluemold)
 # Bluemold Template Engine
 
 Bluemold is a Javascript template engine based on jQuery Template syntax.
